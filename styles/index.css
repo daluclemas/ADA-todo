@@ -70,6 +70,10 @@ body {
   align-items: center;
 }
 
+.text-blue {
+  color: var(--blue);
+}
+
 @media (min-width: 479px) {
   .custom-container {
     width: 400px;

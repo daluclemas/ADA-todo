@@ -55,8 +55,9 @@ const addTodo = () => {
                   </p>
                 </div>
 
-                <div class="text-danger w-25 text-end pe-2">
-                  <i class="fas fa-times-circle" ></i>
+                <div class=" w-25 text-end pe-2">
+                <i class="fas fa-pencil me-2 text-blue" ></i>
+                  <i class="fas fa-times-circle text-danger" ></i>
                 </div>
               </div>
     `;
@@ -66,6 +67,7 @@ const addTodo = () => {
   searchInput.value = "";
   deleteTodo();
   completeTask();
+  editTodo();
 };
 
 addBtn.addEventListener("click", addTodo);
@@ -112,6 +114,29 @@ function completeTask() {
         todoiItem.style.textDecoration = "none";
         todoiItem.style.opacity = 1;
       }
+    });
+  });
+}
+
+function editTodo() {
+  let editBtns = document.querySelectorAll(".fa-pencil ");
+  editBtns = [...editBtns];
+  editBtns.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      let taskid = e.target.parentElement.parentElement.id;
+      todos = todos.filter((task) => task.id !== Number(taskid));
+      todoWrapper.removeChild(e.target.parentElement.parentElement);
+
+      if (!todos.length) {
+        todoWrapper.innerHTML = ` <div class="w-100 h-100 no-todo">
+              <p class="text-muted fs-1 empty ">No added task!</p>
+            </div>`;
+      }
+
+      let task =
+        e.target.parentElement.previousElementSibling.children[1].textContent;
+
+      searchInput.value = task.trim();
     });
   });
 }
