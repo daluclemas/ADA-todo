@@ -89,6 +89,8 @@ function deleteTodo() {
               <p class="text-muted fs-1 empty ">No added task!</p>
             </div>`;
       }
+
+      searchInput.value = "";
     });
   });
 }
